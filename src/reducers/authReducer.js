@@ -16,7 +16,10 @@ export default function authReducer(state = initialState, action) {
         isLoading: false,
       }
     case 'auth/LOGOUT':
-      return initialState
+      return {
+        ...initialState,
+        isLoading: false,
+      }
     case 'auth/SET_PROFILE':
       return {
         ...state,

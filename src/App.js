@@ -1,25 +1,26 @@
 import React from 'react';
 import * as firebase from 'firebase';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import 'firebase/auth';
 import 'firebase/database';
 import "./tailwind.output.css";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import {login} from "./reducers/authReducer"
+import {login, logout} from "./reducers/authReducer"
+import {createBrowserHistory} from 'history';
 
+const history = createBrowserHistory()
 
 function App() {
-  const history = useHistory();
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth)
 
   React.useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-      if (!user){
+      if (!user) {
+        dispatch(logout())
         history.push("/login");
       } else {
         const vendorProfileDoc = firebase.firestore().collection("vendors").doc(user.uid)
@@ -37,14 +38,15 @@ function App() {
             } else {
               dispatch(login({
                 user: userData,
-                profile: doc.data()
+                profile: doc.data(),
+                joined_date: firebase.database.ServerValue.TIMESTAMP
               }))
             }
         }).catch((e) => console.log(e));
       }
     });
     return unsubscribe
-  }, [dispatch, history]);
+  }, [dispatch]);
 
   return auth.isLoading ? <div>loading...</div> : (
     <div className="max-w-md mx-auto flex p-6 bg-gray-100 mt-10 rounded-lg shadow-xl">
@@ -55,7 +57,7 @@ function App() {
         <p className="text-base text-gray-700 leading-normal">
           Building apps together
         </p>
-        <Router>
+        <Router history={history}>
         <Switch>
           <Route path="/profile"><Profile></Profile></Route>
           <Route path="/login"><Login></Login></Route>
