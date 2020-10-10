@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import 'firebase/auth';
 import 'firebase/database';
-import "./App.css";
 import "./tailwind.output.css";
 
 var app = firebase.initializeApp(
