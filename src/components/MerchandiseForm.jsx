@@ -5,7 +5,7 @@ import * as firebase from "firebase";
 
 export default function MerchandiseForm() {
   const auth = useSelector((state) => state.auth);
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: { stock: 0, price: 0 },
   });
 

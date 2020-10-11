@@ -21,7 +21,7 @@ export default function CreateAds({onSuccess}) {
         return {...rest, id: doc.id};
       }));
     })
-  }, [auth.user.uid, store])
+  }, /* eslint-disable */ [])
 
   console.log(concerts)
 

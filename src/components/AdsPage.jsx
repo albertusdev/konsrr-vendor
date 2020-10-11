@@ -1,7 +1,7 @@
 import React from "react";
-import {useSelector, useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 import * as firebase from 'firebase';
-import {setMerchandises} from "../reducers/merchandiseReducer";
+import {Link} from "react-router-dom"
 import Modal from "react-modal";
 import CreateAdsForm from "./CreateAdsForm";
 
@@ -14,13 +14,13 @@ function getDate() {
 }
 
 function AdsItem({ad}) {
-  return <div className="bg-white mr-2 w-1/5 mb-4 rounded">
+  return <Link to={"/ads/"+ad.id}className="bg-white mr-2 w-1/5 mb-4 rounded">
     <img height="200" alt="" src={ad.imageURL}/>
     <div className="p-3 border-gray-500 border-solid border-2 border-t-0">
     <h3 className="font-bold text-black">{ad.concertName}</h3>
     <div className="text-black">{ad.date}</div>
     </div>
-  </div>
+  </Link>
 }
 
 export default function MerchandisePage() {
@@ -31,7 +31,7 @@ export default function MerchandisePage() {
 
   function fetchAds() {
     store.collection("ads")
-    .where("vendor", "==", store.collection('vendors').doc(auth.user.uid))  
+    .where("vendor", "==", store.collection('vendors').doc(auth.user && auth.user.uid))  
     .get()
     .then(function(querySnapshot) {
       setAds(querySnapshot.docs.map(doc => {

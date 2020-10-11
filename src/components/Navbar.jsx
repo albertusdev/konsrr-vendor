@@ -17,9 +17,9 @@ export default function Navbar({match}) {
       <div className="flex justify-between items-end">
         <h1 className="text-xl">KONSRR</h1>
         <div className="dropdown">
-          <div to="profile">{auth.profile.name}</div>
+          <div className="text-white" to="profile">{auth.profile.name}</div>
           <div className="dropdown-content border-gray-500 border-solid border-2 px-2">
-            <a href="#" onClick={e => { e.preventDefault(); firebase.auth().signOut()}}>Sign Out</a>
+            <a href="/" onClick={e => { e.preventDefault(); firebase.auth().signOut()}}>Sign Out</a>
           </div>
         </div>
       </div>

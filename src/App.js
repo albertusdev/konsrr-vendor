@@ -1,7 +1,7 @@
 import React from "react";
 import * as firebase from "firebase";
 import { Router, Route, Switch } from "react-router";
-import Home from "./components/Home";
+import AdDetail from "./components/AdDetail";
 import AdsPage from "./components/AdsPage";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
@@ -71,24 +71,29 @@ function App() {
       <Router history={history}>
         {auth.user ? <Navbar /> : null}
         <Switch>
-          <Route path="/profile">
-            <Profile></Profile>
-          </Route>
-          <Route path="/login">
-            <Login></Login>
-          </Route>
-          <Route path="/merchandise">
-            <MerchandisePage></MerchandisePage>
-          </Route>
-          <Route path="/concert">
-            <CreateConcert></CreateConcert>
-          </Route>
-          <Route path="/ads">
-            <AdsPage/>
-          </Route>
-          <Route path="/">
-            <ListConcert />
-          </Route>
+          {auth.user ? (
+          <>
+            <Route path="/profile">
+              <Profile></Profile>
+            </Route>
+            <Route path="/merchandise">
+              <MerchandisePage></MerchandisePage>
+            </Route>
+            <Route path="/concert">
+              <CreateConcert></CreateConcert>
+            </Route>
+            <Route exact path="/ads">
+              <AdsPage/>
+            </Route>
+            <Route path="/ads/:id">
+              <AdDetail/>
+            </Route>
+            <Route exact path="/">
+              <ListConcert />
+            </Route>
+          </>)
+          : <Route path="/login"><Login></Login></Route>}
+          
         </Switch>
       </Router>
     </div>

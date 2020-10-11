@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as firebase from "firebase";
 import ConcertCard from "./ConcertCard";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ListConcert = () => {
   const auth = useSelector((state) => state.auth);
@@ -21,14 +21,14 @@ const ListConcert = () => {
       )
       .get()
       .then(function (querySnapshot) {
-        querySnapshot.docs.map((doc) => {
+        querySnapshot.docs.forEach((doc) => {
           const { vendor, ...rest } = doc.data();
           let newObject = { ...rest, id: doc.id };
           items.push(newObject);
         });
         setConcerts(items);
       });
-  }, [auth.user.uid, dispatch]);
+  }, [auth.user, dispatch, items, store]);
 
   console.log("heheh", concerts);
 
@@ -45,7 +45,7 @@ const ListConcert = () => {
           </div>
         </Link>
       </div>
-      {concerts.length == 0
+      {concerts.length === 0
         ? "Loading..."
         : concerts.map((concert) => (
             <ConcertCard imageUrl={concert.imageUrl} name={concert.name} />
