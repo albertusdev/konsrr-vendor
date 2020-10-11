@@ -42,6 +42,5 @@ return data ? <div>
   </div>
   </div>
 
-  <button className="p-2 rounded bg-gray-200">New Promotion</button>
 </div> : null
 }
