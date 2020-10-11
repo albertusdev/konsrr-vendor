@@ -13,7 +13,7 @@ export default function MerchandisePage() {
   const merchandises = useSelector(state => state.merchandise.merchandises)
   const store = firebase.firestore()
   const dispatch = useDispatch()
-  const [modalIsOpen,setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
     store.collection("merchandises")
