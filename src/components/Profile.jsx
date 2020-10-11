@@ -1,7 +1,6 @@
 import React from "react";
 import * as firebase from 'firebase';
 import 'firebase/auth';
-import { useHistory } from "react-router-dom";
 import { setProfile } from "../reducers/authReducer"
 import { useSelector, useDispatch } from "react-redux";
 
