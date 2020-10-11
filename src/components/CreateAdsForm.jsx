@@ -44,7 +44,6 @@ export default function CreateAds({onSuccess}) {
         concertName: concerts[data.concert].name
       })
       .then(async docRef => {
-          console.log(data.date)
           onSuccess()
         }
       )
@@ -55,17 +54,18 @@ export default function CreateAds({onSuccess}) {
   return <div>
     <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
 
-    <label className="mr-2 mb-1">Concert</label>
-    <select name="concert" ref={register}>
+    <label className="mb-1">Concert</label>
+    <div><select className="p-0 m-0" name="concert" ref={register}>
       {concerts.map((concert, idx) => <option value={idx}>{concert.name}</option>)}
     </select>
+    </div>
 
-      <label className="mr-2 mb-1">Image URL</label>
+      <label className="mt-2 mb-1">Image URL</label>
       <div>
-        <input name="imageURL" ref={register}></input>
+        <input placeholder="Enter image URL" name="imageURL" ref={register}></input>
       </div>
 
-      <div className="flex flex-row">
+      <div className="flex flex-row mt-2">
           <div className="flex-1 flex flex-col">
             <label>Date</label>
             <Controller
@@ -84,8 +84,8 @@ export default function CreateAds({onSuccess}) {
           </div>
       </div>
 
-      <div>Fee: IDR 100,000</div>
-      <div className="mt-6">
+      <div className="mt-4">Fee: IDR 100,000</div>
+      <div className="mt-8">
         <input className="p-2" type="submit" value="Create Ad"></input>
       </div>
     </form>

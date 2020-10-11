@@ -57,8 +57,8 @@ export default function MerchandisePage() {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLabel="Add Merchandise"
+          style={{overlay: {backgroundColor: "rgba(22,22,22,0.6)"}}}
         > 
-          <button onClick={closeModal}>Close</button>
           <CreateAdsForm onSuccess={() => { fetchAds(); closeModal()}}></CreateAdsForm>
         </Modal>
       <h2 className="text-lg mb-4">Scheduled Ads</h2>
