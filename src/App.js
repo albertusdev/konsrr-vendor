@@ -31,7 +31,7 @@ function App() {
             if (!doc.exists) {
               let defaultProfile = { 
                 name: user.displayName,                 
-                joined_date: firebase.database.ServerValue.TIMESTAMP
+                joinedDate: firebase.firestore.Timestamp.now()
               }
               vendorProfileDoc.set(defaultProfile)
               dispatch(login({
