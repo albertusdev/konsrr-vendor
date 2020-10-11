@@ -25,7 +25,7 @@ export default function MerchandisePage() {
           contentLabel="Add Merchandise"
         > 
           <button onClick={closeModal}>Close</button>
-          <CreateAdsForm onSuccess={() => {}}></CreateAdsForm>
+          <CreateAdsForm onSuccess={() => closeModal()}></CreateAdsForm>
         </Modal>
       <h2 className="text-lg mb-4">Scheduled Ads</h2>
         <div className="flex">
