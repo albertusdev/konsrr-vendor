@@ -41,6 +41,7 @@ export default function CreateAds({onSuccess}) {
         numAddToWishlist: 0,
         concert: firebase.firestore().collection("concerts").doc(concerts[data.concert].id),
         vendor: firebase.firestore().collection("vendors").doc(auth.user.uid),
+        concertName: concerts[data.concert].name
       })
       .then(async docRef => {
           console.log(data.date)
