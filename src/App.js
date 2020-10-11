@@ -2,6 +2,7 @@ import React from 'react';
 import * as firebase from 'firebase';
 import { Router, Route, Switch } from "react-router";
 import Home from "./components/Home";
+import AdsPage from "./components/AdsPage";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import CreateConcert from "./components/CreateConcert";
@@ -62,6 +63,7 @@ function App() {
           <Route path="/login"><Login></Login></Route>
           <Route path="/merchandise"><MerchandisePage></MerchandisePage></Route>
           {/* <Route path="/"><Home></Home></Route> */}
+          <Route path="/ads"><AdsPage></AdsPage></Route>
           <Route path="/"><CreateConcert></CreateConcert></Route>
         </Switch>
       </Router>
