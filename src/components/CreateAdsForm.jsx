@@ -39,7 +39,8 @@ export default function CreateAds({onSuccess}) {
         clicks: 0,
         numConverted: 0,
         numAddToWishlist: 0,
-        concert: firebase.firestore().collection("vendors").doc(concerts[data.concert].id),
+        concert: firebase.firestore().collection("concerts").doc(concerts[data.concert].id),
+        vendor: firebase.firestore().collection("vendors").doc(auth.user.uid),
       })
       .then(async docRef => {
           console.log(data.date)
