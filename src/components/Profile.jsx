@@ -25,7 +25,7 @@ export default function Profile() {
       <label>Name</label>
       <input onChange={e => dispatch(setProfile({
         ...auth.profile,
-        name: auth.profile.name
+        name: e.target.value
       }))} value={auth.profile.name}></input>
       <input type="submit" value="Save"></input>
     </form>
