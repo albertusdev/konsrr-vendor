@@ -12,27 +12,29 @@ const CreateConcert = () => {
 
   const onSubmit = (data) => {
     console.log("ehehe", data);
-    // firebase
-    //   .firestore()
-    //   .collection("concerts")
-    //   .add({
-    //     description: data.description,
-    //     name: data.name,
-    //     price: parseInt(data.price),
-    //     stock: parseInt(data.stock),
-    //     vendor: firebase.firestore().collection("vendors").doc(auth.user.uid),
-    //     vendorName: auth.profile.name,
-    //     artistName: data.artistName,
-    //     saleEnd: data.saleEnd,
-    //     saleStart: data.saleStart,
-    //     start: data.start,
-    //     end: data.end,
-    //     imageUrl: "https://cdn.kiostix.com/media/12896/conversions/medium.jpg" 
-    //   });
+    firebase
+      .firestore()
+      .collection("concerts")
+      .add({
+        description: data.description,
+        name: data.name,
+        price: parseInt(data.price),
+        stock: parseInt(data.stock),
+        vendor: {
+          name: auth.profile.name,
+          reference: firebase.firestore().collection("vendors").doc(auth.user.uid),
+        },
+        artistName: data.artistName,
+        saleEnd: data.saleEnd,
+        saleStart: data.saleStart,
+        start: data.start,
+        end: data.end,
+        imageUrl: "https://cdn.kiostix.com/media/12896/conversions/medium.jpg" 
+      });
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-primary-2 text-white">
       <div className="flex flex-col">
         <h1>Create Concert</h1>
         <label>Name</label>

@@ -62,8 +62,8 @@ function App() {
           <Route path="/profile"><Profile></Profile></Route>
           <Route path="/login"><Login></Login></Route>
           <Route path="/merchandise"><MerchandisePage></MerchandisePage></Route>
-          <Route path="/"><Home></Home></Route>
-          <Route path="/concert"><CreateConcert></CreateConcert></Route>
+          {/* <Route path="/"><Home></Home></Route> */}
+          <Route path="/"><CreateConcert></CreateConcert></Route>
         </Switch>
       </Router>
     </div>
