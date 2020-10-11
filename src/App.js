@@ -29,8 +29,11 @@ function App() {
         vendorProfileDoc.get()
           .then(function(doc) {
             if (!doc.exists) {
-              let defaultProfile = { name: user.displayName }
-              vendorProfileDoc.set()
+              let defaultProfile = { 
+                name: user.displayName,                 
+                joined_date: firebase.database.ServerValue.TIMESTAMP
+              }
+              vendorProfileDoc.set(defaultProfile)
               dispatch(login({
                 user: userData,
                 profile: defaultProfile
@@ -40,7 +43,6 @@ function App() {
               dispatch(login({
                 user: userData,
                 profile: doc.data(),
-                joined_date: firebase.database.ServerValue.TIMESTAMP
               }))
             }
         }).catch((e) => console.log(e));
