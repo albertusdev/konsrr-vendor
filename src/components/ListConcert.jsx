@@ -10,6 +10,7 @@ const ListConcert = () => {
   const dispatch = useDispatch();
   const [concerts, setConcerts] = useState([]);
 
+  let items = [];
   useEffect(() => {
     store
       .collection("concerts")
@@ -22,12 +23,10 @@ const ListConcert = () => {
       .then(function (querySnapshot) {
         querySnapshot.docs.map((doc) => {
           const { vendor, ...rest } = doc.data();
-
-          let newArray = JSON.parse(JSON.stringify(concerts));
           let newObject = { ...rest, id: doc.id };
-          newArray.push(newObject);
-          setConcerts(newArray);
+          items.push(newObject);
         });
+        setConcerts(items);
       });
   }, [auth.user.uid, dispatch]);
 

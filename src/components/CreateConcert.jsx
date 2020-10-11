@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm, Controller } from "react-hook-form";
 import * as firebase from "firebase";
 import { useSelector, useDispatch } from "react-redux";
+import Select from "react-select";
 
 const CreateConcert = () => {
   const auth = useSelector((state) => state.auth);
   const { register, handleSubmit, control, errors } = useForm();
   const dispatch = useDispatch();
+  const store = firebase.firestore();
+  const [merchandise, setMerchandise] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const onSubmit = (data) => {
+    // let imageUrl
+    // firebase
+    //   .storage()
+    //   .ref()
+    //   .child("/merchandise/" + selectedOption[0].value)
+    //   .getDownloadURL()
+    //   .then((url) => console.log("hoho", url));
     console.log("ehehe", data);
     firebase
       .firestore()
@@ -34,6 +45,33 @@ const CreateConcert = () => {
         end: data.end,
         imageUrl: data.imageUrl,
       });
+  };
+
+  let items = [];
+
+  useEffect(() => {
+    store
+      .collection("merchandises")
+      .where("vendor", "==", store.collection("vendors").doc(auth.user.uid))
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.docs.map((doc) => {
+          const { vendor, ...rest } = doc.data();
+          let newObject = { ...rest, id: doc.id };
+          items.push(newObject);
+        });
+        setMerchandise(items);
+      });
+  }, [auth.user.uid, dispatch]);
+
+  const handleMerchandise = (merchandise) => {
+    let temp = [];
+    merchandise.forEach((value) => {
+      const { id, name } = value;
+      let newObject = { value: id, label: name };
+      temp.push(newObject);
+    });
+    return temp;
   };
 
   return (
@@ -136,7 +174,14 @@ const CreateConcert = () => {
         <input name="artistName" ref={register} className="mb-2"></input>
         <label className="text-white">Image URL</label>
         <input name="imageUrl" ref={register} className="mb-2"></input>
-        <div>
+        <label className="text-white">Merchandises</label>
+        <Select
+          defaultValue={selectedOption}
+          onChange={setSelectedOption}
+          isMulti
+          options={merchandise.length > 0 ? handleMerchandise(merchandise) : []}
+        />
+        <div className="mt-8">
           <input type="submit" value="Add Concert"></input>
         </div>
       </div>
