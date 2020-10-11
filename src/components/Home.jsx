@@ -28,6 +28,7 @@ export default function Home() {
           <MerchandiseForm></MerchandiseForm>
         </Modal>
     <FirebaseStorageImg src={firebase.storage().ref().child("/merchandise/6BNZcZY76Lq0JrCLEbsx")}></FirebaseStorageImg>
+    <CreateConcert />
     Home
     
   </div>

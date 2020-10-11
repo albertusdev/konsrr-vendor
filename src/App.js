@@ -4,6 +4,7 @@ import { Router, Route, Switch } from "react-router";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import CreateConcert from "./components/CreateConcert";
 import 'firebase/auth';
 import 'firebase/database';
 import "./tailwind.output.css";
@@ -64,15 +65,15 @@ function App() {
     return unsubscribe
   }, [dispatch]);
 
-  console.log("HOHO", auth)
   return auth.isLoading ? <div className="text-white">loading...</div> : (
-    <div className="max-w-md mx-auto flex p-6 bg-primary-1 mt-10 rounded-lg shadow-xl">
+    <div className="mx-auto flex p-6 bg-primary-2 mt-10 rounded-lg shadow-xl">
       <div className="ml-6 pt-1">
         <Router history={history}>
         <Switch>
           <Route path="/profile"><Profile></Profile></Route>
           <Route path="/login"><Login></Login></Route>
           <Route path="/"><Home></Home></Route>
+          <Route path="/create-concert"><CreateConcert /></Route>
         </Switch>
       </Router>
       </div>
