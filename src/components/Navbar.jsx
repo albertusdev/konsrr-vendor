@@ -24,7 +24,7 @@ export default function Navbar({match}) {
         </div>
       </div>
       <div className="text-lg">
-        <Link className={`mr-3 ${isConcert ? "" : "mr-3 text-gray-500"}`} to="/concert">Concerts</Link>
+        <Link className={`mr-3 ${isConcert ? "" : "mr-3 text-gray-500"}`} to="/">Concerts</Link>
         <Link className={`mr-3 ${isMerchandise ? "" : "mr-3 text-gray-500"}`} to="/merchandise">Merchandise</Link>
         <Link className={isAds ? "" : "mr-3 text-gray-500"} to="/ads">Ads</Link>
       </div>
