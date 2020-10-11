@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import * as serviceWorker from './serviceWorker';
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './reducers/authReducer';
+import merchandiseReducer from "./reducers/merchandiseReducer";
 import { Provider } from 'react-redux'
 
 var app = firebase.initializeApp(
@@ -23,7 +24,8 @@ firebase.analytics();
 
 const store = configureStore({
   reducer: {
-    auth: authReducer
+    auth: authReducer,
+    merchandise: merchandiseReducer
   }
 })
 
