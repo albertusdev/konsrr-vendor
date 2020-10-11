@@ -38,8 +38,7 @@ export default function MerchandisePage() {
   }
 
   return <div>
-    <h1>My Merchandise</h1>
-    <button onClick={openModal}>Add Merchandise</button>
+    <h1 className="text-xl mb-4">My Merchandise</h1>
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
@@ -48,7 +47,12 @@ export default function MerchandisePage() {
           <button onClick={closeModal}>Close</button>
           <MerchandiseForm></MerchandiseForm>
         </Modal>
-
-    {merchandises.map(merchandise => <MerchandiseItem merchandise={merchandise}/>)}
+    <div className="flex">
+      <button onClick={openModal} className="flex items-center justify-center flex-col bg-white mr-2 w-1/5 mb-4 p-3 border-gray-500 border-solid border-2">
+        <div className="text-3xl">+</div>
+        <div>Add Merchandise</div>
+      </button>
+      {merchandises.map(merchandise => <MerchandiseItem merchandise={merchandise}/>)}
+    </div>
     </div>
 }

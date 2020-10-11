@@ -20,13 +20,18 @@ export default function Profile() {
   }
 
   return <div>
+    <h3 class="text-xl mb-2">Profile</h3>
     <form onSubmit={handleSubmit}>
-      <label>Name</label>
-      <input onChange={e => dispatch(setProfile({
-        ...auth.profile,
-        name: e.target.value
-      }))} value={auth.profile.name}></input>
-      <input type="submit" value="Save"></input>
+      <div className="flex">
+        <label className="mr-2">Name: </label>
+        <input onChange={e => dispatch(setProfile({
+          ...auth.profile,
+          name: e.target.value
+        }))} value={auth.profile.name}></input>
+      </div>
+      <div>
+        <input type="submit" value="Save"></input>
+      </div>
     </form>
   </div>
 }
