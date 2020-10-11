@@ -81,10 +81,13 @@ function App() {
             <MerchandisePage></MerchandisePage>
           </Route>
           <Route path="/concert">
-            <CreateConcert></CreateConcert>
+            <ListConcert />
+          </Route>
+          <Route path="/create-concert">
+            <CreateConcert />
           </Route>
           <Route path="/ads">
-            <AdsPage/>
+            <AdsPage />
           </Route>
           <Route path="/">
             <ListConcert />
