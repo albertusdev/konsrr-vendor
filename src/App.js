@@ -72,28 +72,31 @@ function App() {
         {auth.user ? <Navbar /> : null}
         <Switch>
           {auth.user ? (
-          <>
-            <Route path="/profile">
-              <Profile></Profile>
+            <>
+              <Route path="/profile">
+                <Profile></Profile>
+              </Route>
+              <Route path="/merchandise">
+                <MerchandisePage></MerchandisePage>
+              </Route>
+              <Route path="/concert">
+                <CreateConcert></CreateConcert>
+              </Route>
+              <Route exact path="/ads">
+                <AdsPage />
+              </Route>
+              <Route path="/ads/:id">
+                <AdDetail />
+              </Route>
+              <Route exact path="/">
+                <ListConcert />
+              </Route>
+            </>
+          ) : (
+            <Route path="/login">
+              <Login></Login>
             </Route>
-            <Route path="/merchandise">
-              <MerchandisePage></MerchandisePage>
-            </Route>
-            <Route path="/concert">
-              <CreateConcert></CreateConcert>
-            </Route>
-            <Route exact path="/ads">
-              <AdsPage/>
-            </Route>
-            <Route path="/ads/:id">
-              <AdDetail/>
-            </Route>
-            <Route exact path="/">
-              <ListConcert />
-            </Route>
-          </>)
-          : <Route path="/login"><Login></Login></Route>}
-          
+          )}
         </Switch>
       </Router>
     </div>

@@ -30,12 +30,10 @@ const ListConcert = () => {
       });
   }, [auth.user, dispatch, items, store]);
 
-  console.log("heheh", concerts);
-
   return (
     <div className="flex flex-row">
       <div className="w-1/3">
-        <Link to="/concert">
+        <Link to="/create-concert">
           <div
             className="bg-white flex flex-col justify-center items-center p-4 mr-4 h-64"
             style={{ height: "392px" }}
