@@ -6,9 +6,9 @@ import * as firebase from "firebase";
 import { useSelector, useDispatch } from "react-redux";
 
 const CreateConcert = () => {
-  const auth = useSelector(state => state.auth);
+  const auth = useSelector((state) => state.auth);
   const { register, handleSubmit, control, errors } = useForm();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onSubmit = (data) => {
     console.log("ehehe", data);
@@ -22,26 +22,29 @@ const CreateConcert = () => {
         stock: parseInt(data.stock),
         vendor: {
           name: auth.profile.name,
-          reference: firebase.firestore().collection("vendors").doc(auth.user.uid),
+          reference: firebase
+            .firestore()
+            .collection("vendors")
+            .doc(auth.user.uid),
         },
         artistName: data.artistName,
         saleEnd: data.saleEnd,
         saleStart: data.saleStart,
         start: data.start,
         end: data.end,
-        imageUrl: data.imageUrl
+        imageUrl: data.imageUrl,
       });
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-primary-2">
-      <div className="flex flex-col">
-        <h1>Create Concert</h1>
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-neutral-black-1">
+      <div className="flex flex-col px-4">
+        <h1 className="text-center text-2xl">Create Concert</h1>
         <label className="text-white">Name</label>
-        <input name="name" ref={register} />
+        <input name="name" ref={register} className="mb-2" />
         <label className="text-white">Description</label>
-        <input name="description" ref={register} />
-        <div className="flex flex-row">
+        <input name="description" ref={register} className="mb-2" />
+        <div className="flex flex-row mb-2">
           <div className="flex-1 flex flex-col">
             <label className="text-white">Concert Start</label>
             <Controller
@@ -77,7 +80,7 @@ const CreateConcert = () => {
             />
           </div>
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-row mb-2">
           <div className="flex-1 flex flex-col">
             <label className="text-white">Sale Start</label>
             <Controller
@@ -114,16 +117,28 @@ const CreateConcert = () => {
           </div>
         </div>
         <label className="text-white">Price</label>
-        <input min="0" type="number" name="price" ref={register}></input>
+        <input
+          min="0"
+          type="number"
+          name="price"
+          ref={register}
+          className="mb-2"
+        ></input>
         <label className="text-white">Stock</label>
-        <input min="0" type="number" name="stock" ref={register}></input>
+        <input
+          min="0"
+          type="number"
+          name="stock"
+          ref={register}
+          className="mb-2"
+        ></input>
         <label className="text-white">Artist Name</label>
-        <input name="artistName" ref={register}></input>
+        <input name="artistName" ref={register} className="mb-2"></input>
         <label className="text-white">Image URL</label>
-        <input name="imageUrl" ref={register}></input>
-      </div>
-      <div>
-        <input type="submit" value="Add Concert"></input>
+        <input name="imageUrl" ref={register} className="mb-2"></input>
+        <div>
+          <input type="submit" value="Add Concert"></input>
+        </div>
       </div>
     </form>
   );
