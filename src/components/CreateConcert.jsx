@@ -22,7 +22,7 @@ const CreateConcert = () => {
           <div className="flex-1 flex flex-col">
             <label>Concert Start</label>
             <Controller
-              name="datetime_start"
+              name="start"
               control={control}
               render={({ onChange, onBlur, value }) => (
                 <DatePicker
@@ -39,7 +39,7 @@ const CreateConcert = () => {
           <div className="flex-1 flex flex-col">
             <label>Concert End</label>
             <Controller
-              name="datetime_end"
+              name="end"
               control={control}
               render={({ onChange, onBlur, value }) => (
                 <DatePicker
@@ -58,7 +58,7 @@ const CreateConcert = () => {
           <div className="flex-1 flex flex-col">
             <label>Sale Start</label>
             <Controller
-              name="sale_start"
+              name="saleStart"
               control={control}
               render={({ onChange, onBlur, value }) => (
                 <DatePicker
@@ -75,7 +75,7 @@ const CreateConcert = () => {
           <div className="flex-1 flex flex-col">
             <label>Sale End</label>
             <Controller
-              name="sale_end"
+              name="saleEnd"
               control={control}
               render={({ onChange, onBlur, value }) => (
                 <DatePicker
@@ -90,6 +90,12 @@ const CreateConcert = () => {
             />
           </div>
         </div>
+        <label>Price</label>
+        <input min="0" type="number" name="price" ref={register}></input>
+        <label>Stock</label>
+        <input min="0" type="number" name="stock" ref={register}></input>
+        <label>Artist Name</label>
+        <input name="artistName" ref={register}></input>
       </div>
       <div>
         <input type="submit" value="Add Concert"></input>
