@@ -12,39 +12,37 @@ const CreateConcert = () => {
   const dispatch = useDispatch();
   const store = firebase.firestore();
   const [merchandise, setMerchandise] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState(null);
 
   const onSubmit = (data) => {
-    // let imageUrl
-    // firebase
-    //   .storage()
-    //   .ref()
-    //   .child("/merchandise/" + selectedOption[0].value)
-    //   .getDownloadURL()
-    //   .then((url) => console.log("hoho", url));
-    console.log("ehehe", data);
-    firebase
-      .firestore()
-      .collection("concerts")
-      .add({
-        description: data.description,
-        name: data.name,
-        price: parseInt(data.price),
-        stock: parseInt(data.stock),
-        vendor: {
-          name: auth.profile.name,
-          reference: firebase
-            .firestore()
-            .collection("vendors")
-            .doc(auth.user.uid),
-        },
-        artistName: data.artistName,
-        saleEnd: data.saleEnd,
-        saleStart: data.saleStart,
-        start: data.start,
-        end: data.end,
-        imageUrl: data.imageUrl,
-      });
+
+    Promise.all(
+      selectedOptions.map(option => firebase.storage().ref().child("/merchandise/" + option.value)
+      .getDownloadURL()
+      .then(imageURL => ({imageURL, reference: store.collection("merchandise").doc(option.value), name: option.label, price: option.price})))) 
+      .then(merchandiseArray => firebase
+        .firestore()
+        .collection("concerts")
+        .add({
+          description: data.description,
+          name: data.name,
+          price: parseInt(data.price),
+          stock: parseInt(data.stock),
+          vendor: {
+            name: auth.profile.name,
+            reference: firebase
+              .firestore()
+              .collection("vendors")
+              .doc(auth.user.uid),
+          },
+          merchandise: merchandiseArray,
+          artistName: data.artistName,
+          saleEnd: data.saleEnd,
+          saleStart: data.saleStart,
+          start: data.start,
+          end: data.end,
+          imageUrl: data.imageUrl,
+        }));
   };
 
   let items = [];
@@ -62,13 +60,13 @@ const CreateConcert = () => {
         });
         setMerchandise(items);
       });
-  }, [auth.user.uid, dispatch]);
+  }, [auth.user.uid, dispatch, items, store]);
 
   const handleMerchandise = (merchandise) => {
     let temp = [];
     merchandise.forEach((value) => {
       const { id, name } = value;
-      let newObject = { value: id, label: name };
+      let newObject = { value: id, label: name, price: value.price };
       temp.push(newObject);
     });
     return temp;
@@ -176,8 +174,8 @@ const CreateConcert = () => {
         <input name="imageUrl" ref={register} className="mb-2"></input>
         <label className="text-white">Merchandises</label>
         <Select
-          defaultValue={selectedOption}
-          onChange={setSelectedOption}
+          defaultValue={selectedOptions}
+          onChange={setSelectedOptions}
           isMulti
           options={merchandise.length > 0 ? handleMerchandise(merchandise) : []}
         />
