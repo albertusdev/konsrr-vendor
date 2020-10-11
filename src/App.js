@@ -32,21 +32,19 @@ function App() {
             if (!doc.exists) {
               let defaultProfile = { 
                 name: user.displayName,                 
-                joinedDate: firebase.firestore.Timestamp.now()
+                joinedDate: firebase.firestore.Timestamp.now(),
+                default: true,
               }
-              vendorProfileDoc.set(defaultProfile)
               dispatch(login({
                 user: userData,
-                profile: defaultProfile
+                profile: defaultProfile,
               }))
+              history.push("/profile", defaultProfile)
             } else {
               dispatch(login({
                 user: userData,
                 profile: doc.data(),
               }))
-            }
-            if (!doc.exists)  {
-              history.push("/profile")
             }
         }).catch((e) => console.log(e));
       }

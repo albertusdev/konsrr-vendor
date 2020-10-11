@@ -15,7 +15,8 @@ export default function MerchandiseForm() {
         name: data.name,
         price: parseInt(data.price),
         stock: parseInt(data.stock),
-        vendor: firebase.firestore().collection("vendors").doc(auth.user.uid)
+        vendor: firebase.firestore().collection("vendors").doc(auth.user.uid),
+        vendorName: auth.profile.name
       })
       .then(async docRef => {
         firebase.storage().ref().child("/merchandise/" + docRef.id).put(data.picture[0])
@@ -25,24 +26,25 @@ export default function MerchandiseForm() {
 
   return <div>
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-      <label>Name</label>
-      <input name="name" ref={register}></input>
+      <div className="flex flex-col">
+      <input placeholder="Merchandise Name" className="text-2xl outline-none mb-2" name="name" ref={register}></input>
       </div>
 
-      <div>
-      <label>Description</label>
-      <input name="description" ref={register}></input>
+      <div className="flex flex-col">
+        <label className="mb-1">Description</label>
+        <textarea rows="3" className="px-1 outline-none border-gray-500 border-solid border-2" name="description" ref={register}></textarea>
       </div>
 
-      <div>
-      <label>Stock</label>
-      <input name="stock" ref={register}></input>
-      </div>
+      <div className="flex">
+        <div>
+          <label>Stock</label>
+          <input name="stock" ref={register}></input>
+        </div>
 
-      <div>
-      <label>Price</label>
-      <input name="price" ref={register}></input>
+        <div>
+          <label>Price</label>
+          <input name="price" ref={register}></input>
+        </div>
       </div>
 
       <label>Picture</label>
