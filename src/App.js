@@ -2,6 +2,7 @@ import React from "react";
 import * as firebase from "firebase";
 import { Router, Route, Switch } from "react-router";
 import Home from "./components/Home";
+import AdsPage from "./components/AdsPage";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import CreateConcert from "./components/CreateConcert";
@@ -81,6 +82,9 @@ function App() {
           </Route>
           <Route path="/concert">
             <CreateConcert></CreateConcert>
+          </Route>
+          <Route path="/ads">
+            <AdsPage/>
           </Route>
           <Route path="/">
             <ListConcert />
