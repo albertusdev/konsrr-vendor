@@ -42,6 +42,7 @@ function App() {
               }))
               history.push("/profile", defaultProfile)
             } else {
+              console.log("TONG")
               dispatch(login({
                 user: userData,
                 profile: doc.data(),
@@ -62,7 +63,7 @@ function App() {
           <Route path="/login"><Login></Login></Route>
           <Route path="/merchandise"><MerchandisePage></MerchandisePage></Route>
           <Route path="/"><Home></Home></Route>
-          <Route path="/create-concert"><CreateConcert /></Route>
+          <Route path="/concert"><CreateConcert></CreateConcert></Route>
         </Switch>
       </Router>
     </div>

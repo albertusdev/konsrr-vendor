@@ -1,14 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm, Controller } from "react-hook-form";
+import * as firebase from "firebase";
+import { useSelector, useDispatch } from "react-redux";
 
 const CreateConcert = () => {
+  const auth = useSelector(state => state.auth);
   const { register, handleSubmit, control, errors } = useForm();
+  const dispatch = useDispatch()
 
   const onSubmit = (data) => {
-      console.log("ehehe", data)
-  }
+    console.log("ehehe", data);
+    // firebase
+    //   .firestore()
+    //   .collection("concerts")
+    //   .add({
+    //     description: data.description,
+    //     name: data.name,
+    //     price: parseInt(data.price),
+    //     stock: parseInt(data.stock),
+    //     vendor: firebase.firestore().collection("vendors").doc(auth.user.uid),
+    //     vendorName: auth.profile.name,
+    //     artistName: data.artistName,
+    //     saleEnd: data.saleEnd,
+    //     saleStart: data.saleStart,
+    //     start: data.start,
+    //     end: data.end,
+    //     imageUrl: "https://cdn.kiostix.com/media/12896/conversions/medium.jpg" 
+    //   });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
