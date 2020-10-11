@@ -1,7 +1,6 @@
 import React from "react";
 import * as firebase from 'firebase';
 import 'firebase/auth';
-import { useHistory } from "react-router-dom";
 import { setProfile } from "../reducers/authReducer"
 import { useSelector, useDispatch } from "react-redux";
 
@@ -25,7 +24,7 @@ export default function Profile() {
       <label>Name</label>
       <input onChange={e => dispatch(setProfile({
         ...auth.profile,
-        name: auth.profile.name
+        name: e.target.value
       }))} value={auth.profile.name}></input>
       <input type="submit" value="Save"></input>
     </form>

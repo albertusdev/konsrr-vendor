@@ -37,12 +37,26 @@ function App() {
                 user: userData,
                 profile: defaultProfile
               }))
-              history.push("/profile")
             } else {
               dispatch(login({
                 user: userData,
                 profile: doc.data(),
               }))
+            }
+            // firebase.firestore().collection("merchandises")
+            //   .where("vendor", "==", firebase.firestore().collection('vendors').doc(user.uid))
+            //   .get()
+            //   .then(function(querySnapshot) {
+            //       querySnapshot.forEach(function(doc) {
+            //           // doc.data() is never undefined for query doc snapshots
+            //           console.log(doc.id, " => ", doc.data());
+            //       });
+            //   })
+            //   .catch(function(error) {
+            //       console.log("Error getting documents: ", error);
+            //   });
+            if (!doc.exists)  {
+              history.push("/profile")
             }
         }).catch((e) => console.log(e));
       }
