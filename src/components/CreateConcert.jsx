@@ -29,21 +29,21 @@ const CreateConcert = () => {
         saleStart: data.saleStart,
         start: data.start,
         end: data.end,
-        imageUrl: "https://cdn.kiostix.com/media/12896/conversions/medium.jpg" 
+        imageUrl: data.imageUrl
       });
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-primary-2 text-white">
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-primary-2">
       <div className="flex flex-col">
         <h1>Create Concert</h1>
-        <label>Name</label>
+        <label className="text-white">Name</label>
         <input name="name" ref={register} />
-        <label>Description</label>
+        <label className="text-white">Description</label>
         <input name="description" ref={register} />
         <div className="flex flex-row">
           <div className="flex-1 flex flex-col">
-            <label>Concert Start</label>
+            <label className="text-white">Concert Start</label>
             <Controller
               name="start"
               control={control}
@@ -60,7 +60,7 @@ const CreateConcert = () => {
             />
           </div>
           <div className="flex-1 flex flex-col">
-            <label>Concert End</label>
+            <label className="text-white">Concert End</label>
             <Controller
               name="end"
               control={control}
@@ -79,7 +79,7 @@ const CreateConcert = () => {
         </div>
         <div className="flex flex-row">
           <div className="flex-1 flex flex-col">
-            <label>Sale Start</label>
+            <label className="text-white">Sale Start</label>
             <Controller
               name="saleStart"
               control={control}
@@ -96,7 +96,7 @@ const CreateConcert = () => {
             />
           </div>
           <div className="flex-1 flex flex-col">
-            <label>Sale End</label>
+            <label className="text-white">Sale End</label>
             <Controller
               name="saleEnd"
               control={control}
@@ -113,12 +113,14 @@ const CreateConcert = () => {
             />
           </div>
         </div>
-        <label>Price</label>
+        <label className="text-white">Price</label>
         <input min="0" type="number" name="price" ref={register}></input>
-        <label>Stock</label>
+        <label className="text-white">Stock</label>
         <input min="0" type="number" name="stock" ref={register}></input>
-        <label>Artist Name</label>
+        <label className="text-white">Artist Name</label>
         <input name="artistName" ref={register}></input>
+        <label className="text-white">Image URL</label>
+        <input name="imageUrl" ref={register}></input>
       </div>
       <div>
         <input type="submit" value="Add Concert"></input>

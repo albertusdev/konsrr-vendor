@@ -42,7 +42,6 @@ function App() {
               }))
               history.push("/profile", defaultProfile)
             } else {
-              console.log("TONG")
               dispatch(login({
                 user: userData,
                 profile: doc.data(),
