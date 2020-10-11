@@ -4,7 +4,8 @@ import 'firebase/auth';
 
 export default function Home() {
   return <div>
-    <button onClick={() => firebase.auth().signOut()}>logout</button>
+    <button className="text-white" onClick={() => firebase.auth().signOut()}>logout</button>
     Home
+    <h1>Create concert</h1>
   </div>
 }
