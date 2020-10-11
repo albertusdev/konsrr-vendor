@@ -8,7 +8,7 @@ import authReducer from './reducers/authReducer';
 import merchandiseReducer from "./reducers/merchandiseReducer";
 import { Provider } from 'react-redux'
 
-var app = firebase.initializeApp(
+firebase.initializeApp(
   {
     apiKey: "AIzaSyCZwY8R4zCvSKnEWUwxivUvSFBcNI7-5jU",
     authDomain: "konsrr.firebaseapp.com",

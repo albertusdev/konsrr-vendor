@@ -17,14 +17,14 @@ export default function Navbar({match}) {
       <div className="flex justify-between items-end">
         <h1 className="text-xl">KONSRR</h1>
         <div className="dropdown">
-          <div to="profile">{auth.profile.name}</div>
+          <div className="text-white" to="profile">{auth.profile.name}</div>
           <div className="dropdown-content border-gray-500 border-solid border-2 px-2">
-            <a href="#" onClick={e => { e.preventDefault(); firebase.auth().signOut()}}>Sign Out</a>
+            <a href="/" onClick={e => { e.preventDefault(); firebase.auth().signOut()}}>Sign Out</a>
           </div>
         </div>
       </div>
       <div className="text-lg">
-        <Link className={`mr-3 ${isConcert ? "" : "mr-3 text-gray-500"}`} to="/concert">Concerts</Link>
+        <Link className={`mr-3 ${isConcert ? "" : "mr-3 text-gray-500"}`} to="/">Concerts</Link>
         <Link className={`mr-3 ${isMerchandise ? "" : "mr-3 text-gray-500"}`} to="/merchandise">Merchandise</Link>
         <Link className={isAds ? "" : "mr-3 text-gray-500"} to="/ads">Ads</Link>
       </div>

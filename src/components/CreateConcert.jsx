@@ -8,7 +8,7 @@ import Select from "react-select";
 
 const CreateConcert = () => {
   const auth = useSelector((state) => state.auth);
-  const { register, handleSubmit, control, errors } = useForm();
+  const { register, handleSubmit, control } = useForm();
   const dispatch = useDispatch();
   const store = firebase.firestore();
   const [merchandise, setMerchandise] = useState([]);
@@ -50,17 +50,17 @@ const CreateConcert = () => {
   useEffect(() => {
     store
       .collection("merchandises")
-      .where("vendor", "==", store.collection("vendors").doc(auth.user.uid))
+      .where("vendor", "==", store.collection("vendors").doc(auth.user && auth.user.uid))
       .get()
       .then(function (querySnapshot) {
-        querySnapshot.docs.map((doc) => {
+        querySnapshot.docs.forEach((doc) => {
           const { vendor, ...rest } = doc.data();
           let newObject = { ...rest, id: doc.id };
           items.push(newObject);
         });
         setMerchandise(items);
       });
-  }, [auth.user.uid, dispatch, items, store]);
+  }, [auth.user, dispatch, items, store]);
 
   const handleMerchandise = (merchandise) => {
     let temp = [];
