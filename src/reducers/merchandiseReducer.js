@@ -1,4 +1,4 @@
-import { createAction } from '@reduxjs/toolkit'
+import { createAction } from "@reduxjs/toolkit";
 
 const initialState = {
   merchandises: [],
@@ -6,13 +6,13 @@ const initialState = {
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
-    case 'merchandise/SET_MERCHANDISES': 
+    case "merchandise/SET_MERCHANDISES":
       return {
         ...state,
-        merchandises: action.payload
-      }
+        merchandises: action.payload,
+      };
     default:
-      return state
+      return state;
   }
 }
 

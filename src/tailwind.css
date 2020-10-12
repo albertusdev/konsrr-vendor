@@ -3,11 +3,20 @@
 @tailwind utilities;
 
 @layer base {
-    h1, h2, h3, h4, h5, h6, p, a, strong, b {
-        @apply text-white
-    }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  strong,
+  b {
+    @apply text-white;
+  }
 }
 
 html {
-    @apply bg-neutral-black-1;
+  @apply bg-neutral-black-1;
 }

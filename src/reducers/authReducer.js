@@ -1,5 +1,4 @@
-import { createAction } from '@reduxjs/toolkit'
-
+import { createAction } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
@@ -9,27 +8,27 @@ const initialState = {
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
-    case 'auth/LOGIN': 
+    case "auth/LOGIN":
       return {
         ...state,
         ...action.payload,
         isLoading: false,
-      }
-    case 'auth/LOGOUT':
+      };
+    case "auth/LOGOUT":
       return {
         ...initialState,
         isLoading: false,
-      }
-    case 'auth/SET_PROFILE':
+      };
+    case "auth/SET_PROFILE":
       return {
         ...state,
-        profile: action.payload
-      }
+        profile: action.payload,
+      };
     default:
-      return state
+      return state;
   }
 }
 
-export const login = createAction("auth/LOGIN")
-export const logout = createAction("auth/LOGOUT")
-export const setProfile = createAction("auth/SET_PROFILE")
+export const login = createAction("auth/LOGIN");
+export const logout = createAction("auth/LOGOUT");
+export const setProfile = createAction("auth/SET_PROFILE");
