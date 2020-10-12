@@ -16,11 +16,9 @@ export default function ConcertDetail() {
       });
   }, [params.id]);
 
-  console.log("GEGE", data);
-
   return (
     <div className="flex flex-row">
-      <img className="flex flex-1" src={data?.imageUrl} />
+      <img className="flex flex-1" src={data?.imageUrl} alt={data?.name} />
       <div className="flex flex-1 flex-col ml-4">
         <h1 className="text-2xl font-bold">{data?.name}</h1>
         {data && (
