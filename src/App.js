@@ -15,6 +15,7 @@ import { createBrowserHistory } from "history";
 import MerchandisePage from "./components/MerchandisePage";
 import Navbar from "./components/Navbar";
 import ListConcert from "./components/ListConcert";
+import ConcertDetail from "./components/ConcertDetail";
 
 const history = createBrowserHistory();
 
@@ -79,7 +80,7 @@ function App() {
               <Route path="/merchandise">
                 <MerchandisePage></MerchandisePage>
               </Route>
-              <Route path="/concert">
+              <Route exact path="/concert">
                 <CreateConcert></CreateConcert>
               </Route>
               <Route exact path="/ads">
@@ -87,6 +88,9 @@ function App() {
               </Route>
               <Route path="/ads/:id">
                 <AdDetail />
+              </Route>
+              <Route path="/concert/:id">
+                <ConcertDetail />
               </Route>
               <Route exact path="/">
                 <ListConcert />

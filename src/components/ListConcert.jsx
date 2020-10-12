@@ -33,7 +33,7 @@ const ListConcert = () => {
   return (
     <div className="flex flex-row">
       <div className="w-1/3">
-        <Link to="/create-concert">
+        <Link to="/concert">
           <div
             className="bg-white flex flex-col justify-center items-center p-4 mr-4 h-64"
             style={{ height: "392px" }}
@@ -46,7 +46,11 @@ const ListConcert = () => {
       {concerts.length === 0
         ? "Loading..."
         : concerts.map((concert) => (
-            <ConcertCard imageUrl={concert.imageUrl} name={concert.name} />
+            <ConcertCard
+              imageUrl={concert.imageUrl}
+              name={concert.name}
+              id={concert.id}
+            />
           ))}
     </div>
   );

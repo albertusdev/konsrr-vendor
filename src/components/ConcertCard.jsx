@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ConcertCard = (props) => {
   return (
@@ -6,7 +7,9 @@ const ConcertCard = (props) => {
       <img alt="" src={props.imageUrl} />
       <div className="bg-white flex flex-row justify-between p-4">
         <h1 className="text-xl text-black">{props.name}</h1>
-        <button>See Details</button>
+        <Link to={`/concert/${props.id}`}>
+          <button>See Details</button>
+        </Link>
       </div>
     </div>
   );
