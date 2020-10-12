@@ -8,7 +8,7 @@ const ConcertCard = (props) => {
       <div className="bg-white flex flex-row justify-between p-4">
         <h1 className="text-xl text-black">{props.name}</h1>
         <Link to={`/concert/${props.id}`}>
-          <button>See Details</button>
+          <button className="text-black">See Details</button>
         </Link>
       </div>
     </div>
